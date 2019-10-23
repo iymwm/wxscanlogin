@@ -1,6 +1,6 @@
 {
     "name": "zky/wxscanlogin",
-    "description": "test",
+    "description": "微信扫码登录类",
     "type": "library",
     "require": {
         "php": ">=5.5"
