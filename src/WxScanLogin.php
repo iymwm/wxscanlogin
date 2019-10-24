@@ -25,7 +25,7 @@ class WxScanLogin
             $result = json_decode($res, true);
             $this->access_token = $result["access_token"];
             $this->expires_time = time();
-            //file_put_contents('access_token.json', '{"access_token": "'.$this->access_token.'", "expires_time": '.$this->expires_time.'}');
+            file_put_contents('access_token.json', '{"access_token": "'.$result["access_token"].'", "expires_time": '.$this->expires_time.'}');
         }
     }
 
@@ -121,8 +121,9 @@ class WxScanLogin
         curl_setopt($ch , CURLOPT_RETURNTRANSFER, 1);
         $res = curl_exec($ch);
         if( curl_errno($ch) ){
-            var_dump( curl_error($ch) );
-            die();
+            throw new Exception(curl_error($ch));
+            //var_dump( curl_error($ch) );
+            //die();
         }
         curl_close( $ch );
         $arr = json_decode($res, true);
